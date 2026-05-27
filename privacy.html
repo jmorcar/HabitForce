@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta http-equiv="Referrer-Policy" content="no-referrer">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), interest-cohort=()">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; script-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none';">
+  <title>Privacy Policy — HabitForce</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy-deep:   #050d1f;
+      --navy-mid:    #0a1a3a;
+      --navy-card:   #0d2050;
+      --navy-border: #1a3068;
+      --gold:        #f4c430;
+      --gold-light:  #ffe484;
+      --gold-dim:    #c9952a;
+      --blue-accent: #4a90e8;
+      --orange-accent:#e8834a;
+      --text-primary:#e8eaf6;
+      --text-muted:  #8899bb;
+      --text-dim:    #5566880;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--navy-deep);
+      color: var(--text-primary);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── Background atmosphere ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 40% at 50% 0%, rgba(74,144,232,0.12) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 30% at 80% 60%, rgba(232,131,74,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 50% at 20% 80%, rgba(74,100,232,0.06) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Starfield dots ── */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(1px 1px at 10% 15%, rgba(255,255,255,0.35) 0%, transparent 100%),
+        radial-gradient(1px 1px at 25% 40%, rgba(255,255,255,0.2) 0%, transparent 100%),
+        radial-gradient(1px 1px at 45% 8%, rgba(255,255,255,0.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 65% 25%, rgba(255,255,255,0.15) 0%, transparent 100%),
+        radial-gradient(1px 1px at 80% 55%, rgba(255,255,255,0.25) 0%, transparent 100%),
+        radial-gradient(1px 1px at 90% 10%, rgba(255,255,255,0.2) 0%, transparent 100%),
+        radial-gradient(1px 1px at 5%  70%, rgba(255,255,255,0.18) 0%, transparent 100%),
+        radial-gradient(1px 1px at 55% 80%, rgba(255,255,255,0.22) 0%, transparent 100%),
+        radial-gradient(1px 1px at 35% 60%, rgba(255,255,255,0.12) 0%, transparent 100%),
+        radial-gradient(1px 1px at 72% 88%, rgba(255,255,255,0.16) 0%, transparent 100%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .page-wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    /* ── Header ── */
+    header {
+      text-align: center;
+      padding: 56px 0 48px;
+      border-bottom: 1px solid rgba(244,196,48,0.15);
+      margin-bottom: 48px;
+    }
+
+    .logo-ring {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 88px;
+      height: 88px;
+      border-radius: 22px;
+      background: linear-gradient(145deg, #0d2050, #1a3068);
+      border: 1.5px solid rgba(244,196,48,0.4);
+      margin-bottom: 24px;
+      box-shadow: 0 0 32px rgba(244,196,48,0.15), 0 0 80px rgba(74,144,232,0.1);
+      position: relative;
+    }
+
+    .logo-ring svg { width: 52px; height: 52px; }
+
+    .app-name {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #ffffff 0%, var(--gold-light) 60%, var(--gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+
+    .page-title {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 300;
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .last-updated {
+      display: inline-block;
+      background: rgba(244,196,48,0.1);
+      border: 1px solid rgba(244,196,48,0.25);
+      border-radius: 20px;
+      padding: 6px 18px;
+      font-size: 0.8rem;
+      color: var(--gold);
+      letter-spacing: 0.5px;
+    }
+
+    /* ── Privacy badge ── */
+    .privacy-hero {
+      background: linear-gradient(135deg, rgba(13,32,80,0.8), rgba(26,48,104,0.5));
+      border: 1px solid rgba(244,196,48,0.2);
+      border-radius: 20px;
+      padding: 32px;
+      margin-bottom: 40px;
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+    }
+
+    .shield-icon {
+      flex-shrink: 0;
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, #1a4a8a, #0d2050);
+      border-radius: 14px;
+      border: 1px solid rgba(74,144,232,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 24px rgba(74,144,232,0.2);
+    }
+
+    .shield-icon svg { width: 28px; height: 28px; }
+
+    .privacy-hero-text h2 {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+
+    .privacy-hero-text p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ── Pill badges row ── */
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 48px;
+    }
+
+    .badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 40px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.2px;
+    }
+
+    .badge-green  { background: rgba(76,175,80,0.12);  border: 1px solid rgba(76,175,80,0.3);  color: #81c784; }
+    .badge-blue   { background: rgba(74,144,232,0.12); border: 1px solid rgba(74,144,232,0.3); color: #90caf9; }
+    .badge-gold   { background: rgba(244,196,48,0.1);  border: 1px solid rgba(244,196,48,0.3); color: var(--gold); }
+    .badge-red    { background: rgba(239,83,80,0.1);   border: 1px solid rgba(239,83,80,0.25); color: #ef9a9a; }
+
+    .badge-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .badge-green  .badge-dot { background: #81c784; }
+    .badge-blue   .badge-dot { background: #90caf9; }
+    .badge-gold   .badge-dot { background: var(--gold); }
+    .badge-red    .badge-dot { background: #ef9a9a; }
+
+    /* ── Sections ── */
+    .section {
+      margin-bottom: 36px;
+      background: linear-gradient(135deg, rgba(13,32,80,0.5), rgba(10,26,58,0.3));
+      border: 1px solid var(--navy-border);
+      border-radius: 18px;
+      overflow: hidden;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 22px 28px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .section-icon {
+      width: 38px; height: 38px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .icon-gold   { background: rgba(244,196,48,0.15); border: 1px solid rgba(244,196,48,0.3); }
+    .icon-blue   { background: rgba(74,144,232,0.15); border: 1px solid rgba(74,144,232,0.3); }
+    .icon-green  { background: rgba(76,175,80,0.15);  border: 1px solid rgba(76,175,80,0.3);  }
+    .icon-red    { background: rgba(239,83,80,0.15);  border: 1px solid rgba(239,83,80,0.25); }
+    .icon-purple { background: rgba(156,39,176,0.15); border: 1px solid rgba(156,39,176,0.3); }
+    .icon-cyan   { background: rgba(0,188,212,0.15);  border: 1px solid rgba(0,188,212,0.3);  }
+
+    .section-icon svg { width: 18px; height: 18px; }
+
+    .section-title {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      color: #ffffff;
+    }
+
+    .section-body {
+      padding: 22px 28px;
+    }
+
+    .section-body p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      margin-bottom: 14px;
+    }
+
+    .section-body p:last-child { margin-bottom: 0; }
+
+    .section-body strong {
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    /* ── Highlight blocks ── */
+    .highlight {
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin: 16px 0;
+      font-size: 0.88rem;
+      line-height: 1.65;
+    }
+
+    .highlight-gold  { background: rgba(244,196,48,0.07); border-left: 3px solid var(--gold); color: #d4b84a; }
+    .highlight-green { background: rgba(76,175,80,0.07);  border-left: 3px solid #4caf50;    color: #81c784; }
+    .highlight-blue  { background: rgba(74,144,232,0.07); border-left: 3px solid #4a90e8;    color: #90caf9; }
+
+    /* ── Data list ── */
+    .data-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 12px 0;
+    }
+
+    .data-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .data-list li::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
+      margin-top: 6px;
+    }
+
+    /* ── On-device callout ── */
+    .on-device-callout {
+      background: linear-gradient(135deg, rgba(13,32,80,0.9), rgba(26,48,104,0.6));
+      border: 1.5px solid rgba(244,196,48,0.3);
+      border-radius: 16px;
+      padding: 28px;
+      margin-bottom: 40px;
+      text-align: center;
+      box-shadow: 0 0 40px rgba(244,196,48,0.06);
+    }
+
+    .on-device-callout .icon-large {
+      font-size: 2.4rem;
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    .on-device-callout h3 {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    .on-device-callout p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 540px;
+      margin: 0 auto;
+    }
+
+    /* ── Contact ── */
+    .contact-card {
+      background: linear-gradient(135deg, rgba(13,32,80,0.7), rgba(10,26,58,0.5));
+      border: 1px solid rgba(74,144,232,0.25);
+      border-radius: 16px;
+      padding: 28px;
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .contact-card h3 {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+
+    .contact-card p {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .contact-email {
+      display: inline-block;
+      padding: 10px 28px;
+      background: rgba(74,144,232,0.15);
+      border: 1px solid rgba(74,144,232,0.4);
+      border-radius: 30px;
+      color: #90caf9;
+      font-size: 0.88rem;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .contact-email:hover {
+      background: rgba(74,144,232,0.25);
+    }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 32px;
+      text-align: center;
+    }
+
+    footer p {
+      font-size: 0.78rem;
+      color: #445566;
+      line-height: 1.7;
+    }
+
+    footer a {
+      color: #556677;
+      text-decoration: none;
+    }
+
+    .gold-line {
+      width: 60px; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 0 auto 24px;
+      border-radius: 1px;
+    }
+
+    @media (max-width: 560px) {
+      .privacy-hero { flex-direction: column; gap: 16px; }
+      .section-header, .section-body { padding: 18px 20px; }
+      .badges { gap: 8px; }
+      .badge { font-size: 0.78rem; padding: 6px 12px; }
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <!-- Header -->
+  <header>
+    <div class="logo-ring">
+      <svg viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <!-- Trophy cup -->
+        <path d="M26 6C19 6 14 11 14 18C14 24 18 29 24 31L22 38H18L16 42H36L34 38H30L28 31C34 29 38 24 38 18C38 11 33 6 26 6Z" fill="url(#tg)"/>
+        <!-- handles -->
+        <path d="M14 14C10 12 9 18 13 20" stroke="#f4c430" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <path d="M38 14C42 12 43 18 39 20" stroke="#f4c430" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <!-- flame -->
+        <path d="M26 6C23 2 25 0 26 0C27 0 29 2 26 6Z" fill="#ff9800" opacity="0.9"/>
+        <defs>
+          <linearGradient id="tg" x1="14" y1="6" x2="38" y2="42" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#ffe484"/>
+            <stop offset="100%" stop-color="#f4a800"/>
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+    <div class="app-name">HabitForce</div>
+    <div class="page-title">Privacy Policy</div>
+    <span class="last-updated">Last updated: May 27, 2026</span>
+  </header>
+
+  <!-- Hero summary -->
+  <div class="privacy-hero">
+    <div class="shield-icon">
+      <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M14 2L4 6V14C4 19.5 8.4 24.7 14 26C19.6 24.7 24 19.5 24 14V6L14 2Z" fill="rgba(74,144,232,0.3)" stroke="#4a90e8" stroke-width="1.5"/>
+        <path d="M10 14L13 17L18 11" stroke="#90caf9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="privacy-hero-text">
+      <h2>Your data stays on your iPhone. Always.</h2>
+      <p>HabitForce is built with a strict zero-collection philosophy. All your habits, streaks, health data, and personal records are stored exclusively on your own device. No servers, no accounts, no tracking — ever.</p>
+    </div>
+  </div>
+
+  <!-- Badges -->
+  <div class="badges">
+    <span class="badge badge-green"><span class="badge-dot"></span>No data collected</span>
+    <span class="badge badge-blue"><span class="badge-dot"></span>No internet required</span>
+    <span class="badge badge-gold"><span class="badge-dot"></span>No third-party sharing</span>
+    <span class="badge badge-red"><span class="badge-dot"></span>No account needed</span>
+    <span class="badge badge-green"><span class="badge-dot"></span>100% on-device storage</span>
+    <span class="badge badge-blue"><span class="badge-dot"></span>No community features</span>
+  </div>
+
+  <!-- On-device callout -->
+  <div class="on-device-callout">
+    <span class="icon-large" aria-hidden="true">📱</span>
+    <h3>Everything lives on your iPhone</h3>
+    <p>HabitForce has no backend, no cloud, and no user database. Your habits, XP, badges, calendar reminders, and health data are stored only in your device's local storage and Apple frameworks (HealthKit, EventKit). Deleting the app permanently removes all data.</p>
+  </div>
+
+  <!-- Section 1: What we collect -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon icon-gold">
+        <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="9" cy="9" r="7" stroke="#f4c430" stroke-width="1.5"/>
+          <path d="M9 5v4l3 2" stroke="#f4c430" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <span class="section-title">Information We Collect</span>
+    </div>
+    <div class="section-body">
+      <p><strong>We collect nothing.</strong> HabitForce does not collect, transmit, or store any personal information on external servers or databases.</p>
+      <p>All data you enter or generate within the app — including habit names, completion records, streaks, XP points, badges, and reminders — is stored exclusively on your iPhone using Apple's standard on-device storage APIs.</p>
+      <div class="highlight highlight-gold">
+        HabitForce has no user accounts, no registration process, and no login. There is no way to identify you as an individual user because we never receive any data from you.
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 2: HealthKit -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon icon-red">
+        <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M9 15C9 15 2 10.5 2 6A4 4 0 0 1 9 4.2A4 4 0 0 1 16 6C16 10.5 9 15 9 15Z" stroke="#ef9a9a" stroke-width="1.5" fill="rgba(239,83,80,0.15)"/>
+        </svg>
+      </div>
+      <span class="section-title">Apple HealthKit (Health &amp; Fitness Data)</span>
+    </div>
+    <div class="section-body">
+      <p>Premium users may grant HabitForce permission to read certain health metrics from Apple HealthKit — such as step counts and sleep duration — to automatically verify habit completion.</p>
+      <ul class="data-list">
+        <li>Health data is read locally from HealthKit on your device only.</li>
+        <li>Health data is never uploaded, transmitted, or shared with anyone.</li>
+        <li>Health data is never stored permanently by the app — it is only read at the moment of habit verification.</li>
+        <li>You can revoke HealthKit access at any time via <strong>Settings → Privacy &amp; Security → Health → HabitForce</strong>.</li>
+      </ul>
+      <div class="highlight highlight-green">
+        HabitForce does not use HealthKit data for advertising, analytics, or any purpose other than verifying your habits locally on your device.
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 3: Calendar & Reminders -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon icon-blue">
+        <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="2" y="4" width="14" height="12" rx="2" stroke="#90caf9" stroke-width="1.5"/>
+          <path d="M6 2v2M12 2v2M2 8h14" stroke="#90caf9" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <span class="section-title">Calendar &amp; Reminders (Premium)</span>
+    </div>
+    <div class="section-body">
+      <p>Premium users may optionally allow HabitForce to create reminders in Apple's Calendar or Reminders app. This feature uses Apple's EventKit framework and operates entirely on-device.</p>
+      <ul class="data-list">
+        <li>Calendar and reminder data is created locally on your device only.</li>
+        <li>HabitForce does not read your existing calendar events or reminders.</li>
+        <li>No calendar or reminder data is ever transmitted outside your device.</li>
+        <li>You can revoke this permission at any time via <strong>Settings → Privacy &amp; Security → Calendars</strong> or <strong>Reminders → HabitForce</strong>.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Section 4: No sharing -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon icon-purple">
+        <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="5" cy="9" r="2.5" stroke="#ce93d8" stroke-width="1.5"/>
+          <circle cx="13" cy="5" r="2.5" stroke="#ce93d8" stroke-width="1.5"/>
+          <circle cx="13" cy="13" r="2.5" stroke="#ce93d8" stroke-width="1.5"/>
+          <path d="M7.2 8L11 6M7.2 10L11 12" stroke="#ce93d8" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/>
+        </svg>
+      </div>
+      <span class="section-title">No Third-Party Sharing or Community Features</span>
+    </div>
+    <div class="section-body">
+      <p>HabitForce does not share any data with third parties. There are no advertising networks, analytics SDKs, or data brokers integrated into the app.</p>
+      <p><strong>HabitForce has no social or community features.</strong> There is no way to share your habits, progress, or data with other HabitForce users through the app. The app has no network connectivity for user data purposes.</p>
+      <div class="highlight highlight-blue">
+        If you choose to share your data outside the app — for example, by exporting it manually or using iOS Share Sheet — that action is governed by your iPhone's standard iOS privacy controls and is entirely your own decision.
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 5: In-App Purchases -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon icon-gold">
+        <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M9 2l1.8 3.6L15 6.3l-3 2.9.7 4.1L9 11.3 5.3 13.3l.7-4.1-3-2.9 4.2-.7L9 2Z" stroke="#f4c430" stroke-width="1.5" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <span class="section-title">In-App Purchases &amp; Payments</span>
+    </div>
+    <div class="section-body">
+      <p>HabitForce Premium is available as an in-app purchase through Apple's App Store. All payment processing is handled exclusively by Apple — HabitForce never receives, processes, or stores your payment information.</p>
+      <p>Apple's privacy policy governs all financial transactions. HabitForce only receives a confirmation of whether a valid active subscription exists — no payment details, card numbers, or billing information are ever accessible to us.</p>
+    </div>
+  </div>
+
+  <!-- Section 6: Children -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon icon-cyan">
+        <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="9" cy="7" r="3.5" stroke="#80deea" stroke-width="1.5"/>
+          <path d="M3 16c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="#80deea" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <span class="section-title">Children's Privacy</span>
+    </div>
+    <div class="section-body">
+      <p>Because HabitForce collects no personal data whatsoever, it is safe for users of all ages. The app does not knowingly collect information from anyone, including children under 13.</p>
+    </div>
+  </div>
+
+  <!-- Section 7: Your rights -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon icon-green">
+        <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M9 2L4 5v5c0 3.5 2.2 6.7 5 8 2.8-1.3 5-4.5 5-8V5L9 2Z" stroke="#81c784" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M6.5 9l2 2 3-3" stroke="#81c784" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <span class="section-title">Your Rights &amp; Data Control</span>
+    </div>
+    <div class="section-body">
+      <p>Since all data is stored only on your device, you have complete and exclusive control over it at all times:</p>
+      <ul class="data-list">
+        <li><strong>Delete all data:</strong> Uninstalling HabitForce permanently deletes all app data from your device.</li>
+        <li><strong>Revoke health access:</strong> Settings → Privacy &amp; Security → Health → HabitForce.</li>
+        <li><strong>Revoke calendar access:</strong> Settings → Privacy &amp; Security → Calendars → HabitForce.</li>
+        <li><strong>Reset in-app data:</strong> Available through the app's Settings screen.</li>
+      </ul>
+      <p>There is no data to request from us because we hold none. All your data is already entirely in your possession.</p>
+    </div>
+  </div>
+
+  <!-- Section 8: Changes -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon icon-blue">
+        <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M3 9a6 6 0 1 0 12 0A6 6 0 0 0 3 9Z" stroke="#90caf9" stroke-width="1.5"/>
+          <path d="M9 5v4l2.5 2.5" stroke="#90caf9" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <span class="section-title">Changes to This Policy</span>
+    </div>
+    <div class="section-body">
+      <p>We may update this Privacy Policy from time to time. Any changes will be posted on this page with a revised "last updated" date. Continued use of HabitForce after changes constitutes acceptance of the updated policy.</p>
+      <p>Because we collect no data, policy changes can only ever make your privacy stronger or clarify existing practices — never weaker.</p>
+    </div>
+  </div>
+
+  <!-- Contact -->
+  <div class="contact-card">
+    <h3>Questions about privacy?</h3>
+    <p>We're happy to answer any questions about how HabitForce handles your data.</p>
+    <a href="mailto:privacy@habitforce.app" class="contact-email">privacy@habitforce.app</a>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="gold-line"></div>
+    <p>© 2026 HabitForce. All rights reserved.<br>
+    This app is not affiliated with Apple Inc.<br>
+    Apple, HealthKit, EventKit, and App Store are trademarks of Apple Inc.</p>
+  </footer>
+
+</div>
+</body>
+</html>

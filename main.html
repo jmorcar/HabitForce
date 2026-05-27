@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta http-equiv="Referrer-Policy" content="no-referrer">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), interest-cohort=()">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; script-src 'unsafe-inline'; base-uri 'none'; form-action 'none'; frame-ancestors 'none';">
+  <meta name="description" content="HabitForce — Build better habits. Unlock your best self. Track habits, earn XP, collect badges, and sync with Apple Health.">
+  <meta name="theme-color" content="#050d1f">
+  <title>HabitForce — Build Better Habits</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy:       #050d1f;
+      --navy-mid:   #0a1a3a;
+      --navy-card:  #0d2050;
+      --border:     rgba(255,255,255,0.07);
+      --border-gold:rgba(244,196,48,0.25);
+      --gold:       #f4c430;
+      --gold-light: #ffe484;
+      --gold-dim:   #c9952a;
+      --blue:       #4a90e8;
+      --blue-light: #90caf9;
+      --orange:     #e8834a;
+      --text:       #e8eaf6;
+      --muted:      #7a8baa;
+      --dim:        #3a4a60;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--navy);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── atmosphere ── */
+    .bg-atmo {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 70% 50% at 50% -10%, rgba(74,144,232,0.13) 0%, transparent 65%),
+        radial-gradient(ellipse 40% 35% at 85% 55%,  rgba(232,131,74,0.09) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 40% at 10% 80%,  rgba(74,100,232,0.07) 0%, transparent 60%);
+    }
+    .bg-stars {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background-image:
+        radial-gradient(1px 1px at  8% 12%, rgba(255,255,255,0.4)  0%, transparent 100%),
+        radial-gradient(1px 1px at 22% 38%, rgba(255,255,255,0.22) 0%, transparent 100%),
+        radial-gradient(1px 1px at 44%  6%, rgba(255,255,255,0.32) 0%, transparent 100%),
+        radial-gradient(1px 1px at 63% 22%, rgba(255,255,255,0.18) 0%, transparent 100%),
+        radial-gradient(1px 1px at 78% 52%, rgba(255,255,255,0.28) 0%, transparent 100%),
+        radial-gradient(1px 1px at 91%  9%, rgba(255,255,255,0.2)  0%, transparent 100%),
+        radial-gradient(1px 1px at  4% 68%, rgba(255,255,255,0.17) 0%, transparent 100%),
+        radial-gradient(1px 1px at 53% 78%, rgba(255,255,255,0.24) 0%, transparent 100%),
+        radial-gradient(1px 1px at 34% 58%, rgba(255,255,255,0.14) 0%, transparent 100%),
+        radial-gradient(1px 1px at 71% 86%, rgba(255,255,255,0.19) 0%, transparent 100%),
+        radial-gradient(1px 1px at 16% 91%, rgba(255,255,255,0.13) 0%, transparent 100%),
+        radial-gradient(1px 1px at 87% 73%, rgba(255,255,255,0.16) 0%, transparent 100%);
+    }
+
+    /* ── layout ── */
+    .wrap { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 0 28px; }
+
+    /* ── nav ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      backdrop-filter: blur(20px) saturate(1.4);
+      background: rgba(5,13,31,0.85);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 1100px; margin: 0 auto; padding: 0 28px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none;
+    }
+    .nav-logo-icon {
+      width: 36px; height: 36px; border-radius: 9px;
+      background: linear-gradient(145deg, #0d2050, #1a3068);
+      border: 1px solid var(--border-gold);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 0 16px rgba(244,196,48,0.15);
+    }
+    .nav-logo-icon svg { width: 20px; height: 20px; }
+    .nav-logo-text {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800; font-size: 1.15rem;
+      background: linear-gradient(135deg, #fff 0%, var(--gold-light) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .nav-links { display: flex; align-items: center; gap: 6px; }
+    .nav-links a {
+      color: var(--muted); text-decoration: none; font-size: 0.875rem;
+      padding: 6px 14px; border-radius: 8px; transition: color 0.2s, background 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+    .nav-cta {
+      background: linear-gradient(135deg, rgba(244,196,48,0.15), rgba(232,131,74,0.15));
+      border: 1px solid var(--border-gold) !important;
+      color: var(--gold) !important;
+      font-weight: 600 !important;
+    }
+    .nav-cta:hover { background: rgba(244,196,48,0.2) !important; }
+
+    /* ── hero ── */
+    .hero { padding: 100px 0 80px; text-align: center; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(244,196,48,0.1); border: 1px solid var(--border-gold);
+      border-radius: 40px; padding: 6px 18px;
+      font-size: 0.78rem; font-weight: 600; color: var(--gold);
+      letter-spacing: 2px; text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+    .hero-eyebrow-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); animation: pulse-gold 2s ease-in-out infinite; }
+    @keyframes pulse-gold { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+
+    .hero h1 {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2.8rem, 7vw, 5.2rem);
+      line-height: 1.0;
+      letter-spacing: -2px;
+      margin-bottom: 28px;
+    }
+    .hero h1 .line-white { color: #fff; }
+    .hero h1 .line-grad {
+      background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 50%, var(--orange) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: var(--muted); line-height: 1.7;
+      max-width: 520px; margin: 0 auto 44px;
+    }
+    .hero-cta { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 60px; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: linear-gradient(135deg, var(--gold), var(--orange));
+      color: #1a0a00; font-weight: 700; font-size: 0.95rem;
+      padding: 14px 28px; border-radius: 14px; text-decoration: none;
+      box-shadow: 0 8px 32px rgba(244,196,48,0.25);
+      transition: transform 0.2s, box-shadow 0.2s;
+      font-family: 'Outfit', sans-serif;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 40px rgba(244,196,48,0.35); }
+    .btn-primary svg { width: 18px; height: 18px; flex-shrink: 0; }
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 1px solid var(--border); color: var(--muted);
+      padding: 14px 24px; border-radius: 14px; text-decoration: none;
+      font-size: 0.9rem; transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-ghost:hover { border-color: rgba(255,255,255,0.2); color: var(--text); }
+
+    /* ── hero stats ── */
+    .hero-stats {
+      display: flex; justify-content: center; gap: 0;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 18px; overflow: hidden;
+      max-width: 520px; margin: 0 auto;
+    }
+    .hero-stat {
+      flex: 1; padding: 20px 16px; text-align: center;
+      border-right: 1px solid var(--border);
+    }
+    .hero-stat:last-child { border-right: none; }
+    .hero-stat-val {
+      font-family: 'Outfit', sans-serif; font-weight: 800;
+      font-size: 1.6rem; color: var(--gold); line-height: 1;
+      margin-bottom: 4px;
+    }
+    .hero-stat-label { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+
+    /* ── section shared ── */
+    .section { padding: 80px 0; }
+    .eyebrow {
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 14px;
+    }
+    .section-title {
+      font-family: 'Outfit', sans-serif; font-weight: 800;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      letter-spacing: -1px; line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      color: var(--muted); font-size: 1rem;
+      line-height: 1.7; max-width: 520px; margin-bottom: 52px;
+    }
+    .centered { text-align: center; }
+    .centered .section-sub { margin-left: auto; margin-right: auto; }
+
+    /* ── feature cards ── */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+    }
+    .feature-card {
+      background: linear-gradient(135deg, rgba(13,32,80,0.6), rgba(10,26,58,0.4));
+      border: 1px solid var(--border);
+      border-radius: 20px; padding: 28px;
+      transition: transform 0.22s, border-color 0.22s;
+    }
+    .feature-card:hover { transform: translateY(-4px); border-color: rgba(244,196,48,0.2); }
+    .feature-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 18px; font-size: 20px;
+    }
+    .fi-purple { background: rgba(124,77,255,0.15); border: 1px solid rgba(124,77,255,0.3); }
+    .fi-blue   { background: rgba(74,144,232,0.15); border: 1px solid rgba(74,144,232,0.3); }
+    .fi-gold   { background: rgba(244,196,48,0.12); border: 1px solid rgba(244,196,48,0.3); }
+    .fi-green  { background: rgba(76,175,80,0.15);  border: 1px solid rgba(76,175,80,0.3);  }
+    .fi-red    { background: rgba(239,83,80,0.12);  border: 1px solid rgba(239,83,80,0.25); }
+    .fi-cyan   { background: rgba(0,188,212,0.12);  border: 1px solid rgba(0,188,212,0.25); }
+    .feature-card h3 {
+      font-family: 'Outfit', sans-serif; font-weight: 700;
+      font-size: 1rem; margin-bottom: 8px;
+    }
+    .feature-card p { font-size: 0.875rem; color: var(--muted); line-height: 1.65; }
+
+    /* ── premium spotlight ── */
+    .premium-spotlight {
+      position: relative; border-radius: 24px; padding: 2px;
+      background: linear-gradient(120deg, #f4c430, #e8834a, #f4c430, #ffe484);
+      background-size: 300% 300%;
+      animation: shimmer-border 4s linear infinite;
+      margin-bottom: 18px;
+    }
+    @keyframes shimmer-border { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+    .premium-inner {
+      background: linear-gradient(135deg, #0d1a40, #1a2a58);
+      border-radius: 22px; padding: 40px 44px;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 48px; align-items: center;
+    }
+    .premium-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(244,196,48,0.12); border: 1px solid var(--border-gold);
+      border-radius: 40px; padding: 5px 16px;
+      font-size: 0.75rem; font-weight: 700; color: var(--gold);
+      letter-spacing: 2px; text-transform: uppercase; margin-bottom: 18px;
+    }
+    .premium-title {
+      font-family: 'Outfit', sans-serif; font-weight: 800;
+      font-size: clamp(1.5rem, 3vw, 2rem); line-height: 1.15;
+      margin-bottom: 14px;
+    }
+    .premium-title span {
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .premium-desc { color: var(--muted); font-size: 0.9rem; line-height: 1.7; margin-bottom: 28px; }
+    .premium-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .premium-list li {
+      display: flex; align-items: center; gap: 12px;
+      font-size: 0.9rem; color: var(--text);
+    }
+    .pli-icon {
+      width: 30px; height: 30px; border-radius: 8px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; font-size: 14px;
+    }
+    .pli-purple { background: rgba(124,77,255,0.2); }
+    .pli-blue   { background: rgba(74,144,232,0.2); }
+    .pli-red    { background: rgba(239,83,80,0.2);  }
+    .pli-green  { background: rgba(76,175,80,0.2);  }
+    .premium-price-card {
+      background: rgba(5,13,31,0.7); border: 1px solid var(--border-gold);
+      border-radius: 20px; padding: 32px; text-align: center;
+      box-shadow: 0 0 60px rgba(244,196,48,0.08);
+    }
+    .price-crown { font-size: 2rem; margin-bottom: 12px; }
+    .price-label { font-size: 0.75rem; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+    .price-amount {
+      font-family: 'Outfit', sans-serif; font-weight: 900;
+      font-size: 3rem; color: var(--gold); line-height: 1; margin-bottom: 4px;
+    }
+    .price-period { font-size: 0.8rem; color: var(--muted); margin-bottom: 24px; }
+    .price-features { list-style: none; text-align: left; margin-bottom: 28px; display: flex; flex-direction: column; gap: 10px; }
+    .price-features li {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 0.85rem; color: var(--muted);
+    }
+    .price-features li::before {
+      content: '✓'; color: var(--gold); font-weight: 700; font-size: 0.9rem;
+    }
+
+    /* ── how it works ── */
+    .steps { display: flex; flex-direction: column; gap: 0; position: relative; }
+    .steps::before {
+      content: ''; position: absolute; left: 27px; top: 28px; bottom: 28px;
+      width: 1px; background: linear-gradient(to bottom, var(--border-gold), transparent);
+    }
+    .step {
+      display: flex; gap: 24px; align-items: flex-start;
+      padding: 28px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .step:last-child { border-bottom: none; }
+    .step-num {
+      width: 56px; height: 56px; flex-shrink: 0;
+      background: linear-gradient(135deg, #0d2050, #1a3068);
+      border: 1px solid var(--border-gold);
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Outfit', sans-serif; font-weight: 800;
+      font-size: 1.4rem;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      position: relative; z-index: 1;
+    }
+    .step-num-wrap {
+      width: 56px; height: 56px; flex-shrink: 0;
+      background: linear-gradient(135deg, #0d2050, #1a3068);
+      border: 1px solid var(--border-gold);
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; z-index: 1;
+      box-shadow: 0 0 20px rgba(244,196,48,0.1);
+    }
+    .step-content { padding-top: 10px; }
+    .step-title {
+      font-family: 'Outfit', sans-serif; font-weight: 700;
+      font-size: 1.05rem; margin-bottom: 6px;
+    }
+    .step-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.65; }
+
+    /* ── privacy strip ── */
+    .privacy-strip {
+      background: linear-gradient(135deg, rgba(13,32,80,0.6), rgba(10,26,58,0.4));
+      border: 1px solid rgba(76,175,80,0.2);
+      border-radius: 20px; padding: 32px 36px;
+      display: flex; gap: 32px; align-items: center; flex-wrap: wrap;
+    }
+    .privacy-strip-icon {
+      width: 56px; height: 56px; flex-shrink: 0;
+      background: rgba(76,175,80,0.1); border: 1px solid rgba(76,175,80,0.3);
+      border-radius: 14px; display: flex; align-items: center; justify-content: center;
+    }
+    .privacy-strip-icon svg { width: 26px; height: 26px; }
+    .privacy-strip-text h3 {
+      font-family: 'Outfit', sans-serif; font-weight: 700;
+      font-size: 1rem; margin-bottom: 6px;
+    }
+    .privacy-strip-text p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+    .privacy-badges { display: flex; gap: 8px; flex-wrap: wrap; margin-left: auto; }
+    .pbadge {
+      font-size: 0.75rem; font-weight: 500; padding: 5px 12px; border-radius: 20px;
+    }
+    .pbadge-g { background: rgba(76,175,80,0.12); border: 1px solid rgba(76,175,80,0.3); color: #81c784; }
+    .pbadge-b { background: rgba(74,144,232,0.12); border: 1px solid rgba(74,144,232,0.3); color: #90caf9; }
+
+    /* ── CTA banner ── */
+    .cta-section {
+      margin: 40px 0 80px;
+      background: linear-gradient(135deg, rgba(13,32,80,0.8), rgba(26,48,104,0.5));
+      border: 1px solid var(--border-gold);
+      border-radius: 28px; padding: 64px 48px;
+      text-align: center;
+      box-shadow: 0 0 80px rgba(244,196,48,0.05);
+    }
+    .cta-section h2 {
+      font-family: 'Outfit', sans-serif; font-weight: 900;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      letter-spacing: -1px; margin-bottom: 16px;
+    }
+    .cta-section h2 span {
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .cta-section p { color: var(--muted); font-size: 1rem; margin-bottom: 36px; }
+
+    /* ── footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 28px 48px;
+    }
+    .footer-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 20px;
+    }
+    .footer-logo {
+      font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1rem;
+      background: linear-gradient(135deg, #fff, var(--gold-light));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-links a { color: var(--dim); font-size: 0.85rem; text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--muted); }
+    .footer-copy { color: var(--dim); font-size: 0.8rem; }
+
+    /* ── responsive ── */
+    @media (max-width: 720px) {
+      .premium-inner { grid-template-columns: 1fr; gap: 28px; padding: 28px 24px; }
+      .privacy-strip { flex-direction: column; gap: 20px; }
+      .privacy-badges { margin-left: 0; }
+      .cta-section { padding: 44px 24px; }
+      .hero-stats { flex-direction: column; border-radius: 14px; }
+      .hero-stat { border-right: none; border-bottom: 1px solid var(--border); }
+      .hero-stat:last-child { border-bottom: none; }
+      .nav-links a:not(.nav-cta) { display: none; }
+      .steps::before { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="bg-atmo" aria-hidden="true"></div>
+<div class="bg-stars" aria-hidden="true"></div>
+
+<!-- NAV -->
+<nav aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo" aria-label="HabitForce home">
+      <div class="nav-logo-icon" aria-hidden="true">
+        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 1C7 1 5 3.5 5 6C5 8.5 6.5 10.5 8.5 11.2L7.5 14H6L5 15.5H15L14 14H12.5L11.5 11.2C13.5 10.5 15 8.5 15 6C15 3.5 13 1 10 1Z" fill="url(#ng)"/>
+          <path d="M5 4C3.5 3.4 3.2 5.5 4.8 6" stroke="#f4c430" stroke-width="1" fill="none" stroke-linecap="round"/>
+          <path d="M15 4C16.5 3.4 16.8 5.5 15.2 6" stroke="#f4c430" stroke-width="1" fill="none" stroke-linecap="round"/>
+          <path d="M10 1C9.2 -0.2 10 -0.5 10 -0.5C10 -0.5 10.8 -0.2 10 1Z" fill="#ff9800"/>
+          <defs><linearGradient id="ng" x1="5" y1="1" x2="15" y2="15.5" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#ffe484"/><stop offset="100%" stop-color="#f4a800"/></linearGradient></defs>
+        </svg>
+      </div>
+      <span class="nav-logo-text">HabitForce</span>
+    </a>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#premium">Premium</a>
+      <a href="#privacy">Privacy</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="https://apps.apple.com" target="_blank" rel="noopener noreferrer" class="nav-cta">Download</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" aria-labelledby="hero-heading">
+  <div class="wrap">
+    <div class="hero-eyebrow">
+      <span class="hero-eyebrow-dot" aria-hidden="true"></span>
+      Now available on App Store
+    </div>
+    <h1 id="hero-heading">
+      <span class="line-white">Build better habits.</span><br>
+      <span class="line-grad">Unlock your best self.</span>
+    </h1>
+    <p class="hero-sub">Track habits, earn XP, collect badges, and sync with Apple Health — all stored privately on your iPhone.</p>
+    <div class="hero-cta">
+      <a href="https://apps.apple.com" target="_blank" rel="noopener noreferrer" class="btn-primary" aria-label="Download HabitForce on App Store">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        Download on App Store — Free
+      </a>
+      <a href="#features" class="btn-ghost">See features ↓</a>
+    </div>
+    <div class="hero-stats" role="list" aria-label="App statistics">
+      <div class="hero-stat" role="listitem">
+        <div class="hero-stat-val">∞</div>
+        <div class="hero-stat-label">Habits (Premium)</div>
+      </div>
+      <div class="hero-stat" role="listitem">
+        <div class="hero-stat-val">XP</div>
+        <div class="hero-stat-label">Level system</div>
+      </div>
+      <div class="hero-stat" role="listitem">
+        <div class="hero-stat-val">19+</div>
+        <div class="hero-stat-label">Badges to earn</div>
+      </div>
+      <div class="hero-stat" role="listitem">
+        <div class="hero-stat-val">0</div>
+        <div class="hero-stat-label">Data collected</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section" id="features" aria-labelledby="features-heading">
+  <div class="wrap">
+    <div class="eyebrow">Features</div>
+    <h2 class="section-title" id="features-heading">Everything you need<br>to build lasting habits</h2>
+    <p class="section-sub">A complete habit system built around motivation, not guilt. Track, level up, and never break the chain.</p>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon fi-purple" aria-hidden="true">🔥</div>
+        <h3>Streaks &amp; Freeze Protection</h3>
+        <p>Keep your streaks alive with freeze tokens. Get alerts when your streaks are at risk each night before midnight.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon fi-gold" aria-hidden="true">⭐</div>
+        <h3>XP &amp; Level System</h3>
+        <p>Earn XP for every habit you complete. Level up over time and watch your progress compound into something real.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon fi-blue" aria-hidden="true">🏆</div>
+        <h3>19+ Badges to Unlock</h3>
+        <p>Earn badges across Streaks, Consistency, and Health categories. From Primer Paso to Centenario — collect them all.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon fi-red" aria-hidden="true">❤️</div>
+        <h3>Apple Health Sync</h3>
+        <p>Steps and sleep data verified automatically from HealthKit. Your habits complete themselves when you hit your goals.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon fi-green" aria-hidden="true">📅</div>
+        <h3>Calendar View</h3>
+        <p>See your full habit history at a glance. Navigate by month and review any past day's completion status.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon fi-cyan" aria-hidden="true">📊</div>
+        <h3>Statistics &amp; Progress</h3>
+        <p>Detailed stats on streaks, perfect days, and completion rates. Understand your patterns and improve over time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PREMIUM -->
+<section class="section" id="premium" aria-labelledby="premium-heading">
+  <div class="wrap">
+    <div class="eyebrow">Premium</div>
+    <h2 class="section-title" id="premium-heading">Unlock your full potential</h2>
+    <p class="section-sub">Free forever for core habits. Go Premium for unlimited power.</p>
+
+    <div class="premium-spotlight" role="region" aria-label="HabitForce Premium features">
+      <div class="premium-inner">
+        <div>
+          <div class="premium-badge" aria-label="Premium plan">👑 PREMIUM</div>
+          <h3 class="premium-title">More habits.<br><span>More progress.</span><br>Zero limits.</h3>
+          <p class="premium-desc">Everything in Free, plus the tools that serious habit-builders need — synced with your health data and your calendar.</p>
+          <ul class="premium-list" aria-label="Premium features list">
+            <li><span class="pli-icon pli-purple" aria-hidden="true">∞</span> Unlimited habits — no cap</li>
+            <li><span class="pli-icon pli-blue" aria-hidden="true">🛡️</span> XP, Badges &amp; full level system</li>
+            <li><span class="pli-icon pli-red" aria-hidden="true">❤️</span> HealthKit auto-verification</li>
+            <li><span class="pli-icon pli-green" aria-hidden="true">📅</span> Calendar &amp; Reminders sync</li>
+          </ul>
+        </div>
+        <div class="premium-price-card">
+          <div class="price-crown" aria-hidden="true">👑</div>
+          <div class="price-label">HabitForce Premium</div>
+          <div class="price-amount" aria-label="Price">$X</div>
+          <div class="price-period">per month · cancel anytime</div>
+          <ul class="price-features" aria-label="What's included">
+            <li>Unlimited habits</li>
+            <li>XP &amp; Badges system</li>
+            <li>HealthKit auto-sync</li>
+            <li>Calendar &amp; Reminders</li>
+            <li>All future premium features</li>
+          </ul>
+          <a href="https://apps.apple.com" target="_blank" rel="noopener noreferrer" class="btn-primary" style="width:100%;justify-content:center;" aria-label="Get HabitForce Premium">
+            Get Premium
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section" aria-labelledby="howitworks-heading">
+  <div class="wrap">
+    <div class="centered">
+      <div class="eyebrow">How it works</div>
+      <h2 class="section-title" id="howitworks-heading">Simple by design</h2>
+      <p class="section-sub" style="margin-left:auto;margin-right:auto;">Four steps to a stronger daily routine.</p>
+    </div>
+    <div class="steps" role="list">
+      <div class="step" role="listitem">
+        <div class="step-num-wrap" aria-label="Step 1">
+          <span class="step-num">1</span>
+        </div>
+        <div class="step-content">
+          <div class="step-title">Add your habits</div>
+          <p class="step-desc">Create any habit — walking, sleep, reading, meditation. Set your daily goal and how you want to verify it.</p>
+        </div>
+      </div>
+      <div class="step" role="listitem">
+        <div class="step-num-wrap" aria-label="Step 2">
+          <span class="step-num">2</span>
+        </div>
+        <div class="step-content">
+          <div class="step-title">Check in every day</div>
+          <p class="step-desc">Mark habits complete manually, or let HealthKit verify steps and sleep automatically in the background.</p>
+        </div>
+      </div>
+      <div class="step" role="listitem">
+        <div class="step-num-wrap" aria-label="Step 3">
+          <span class="step-num">3</span>
+        </div>
+        <div class="step-content">
+          <div class="step-title">Earn XP &amp; unlock badges</div>
+          <p class="step-desc">Every completion earns XP. Level up and unlock badges as your consistency grows — from Primer Paso to Centenario.</p>
+        </div>
+      </div>
+      <div class="step" role="listitem">
+        <div class="step-num-wrap" aria-label="Step 4">
+          <span class="step-num">4</span>
+        </div>
+        <div class="step-content">
+          <div class="step-title">Protect your streaks</div>
+          <p class="step-desc">Get notified when streaks are at risk. Use freeze tokens to protect your progress on tough days.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRIVACY -->
+<section class="section" id="privacy" aria-labelledby="privacy-heading">
+  <div class="wrap">
+    <div class="eyebrow">Privacy</div>
+    <h2 class="section-title" id="privacy-heading">Your data stays<br>on your iPhone</h2>
+    <p class="section-sub">No accounts. No servers. No tracking. Everything lives exclusively on your device.</p>
+    <div class="privacy-strip">
+      <div class="privacy-strip-icon" aria-hidden="true">
+        <svg viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M13 2L4 6v7c0 5 3.5 9.7 9 11 5.5-1.3 9-6 9-11V6L13 2Z" fill="rgba(76,175,80,0.2)" stroke="#81c784" stroke-width="1.5"/>
+          <path d="M9 13l3 3 5-5" stroke="#81c784" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="privacy-strip-text">
+        <h3>Zero-collection philosophy</h3>
+        <p>HabitForce has no backend, no user database, and no analytics. All habits, streaks, health data, and reminders are stored only using Apple's on-device frameworks (SwiftData, HealthKit, EventKit). Deleting the app removes everything permanently.</p>
+      </div>
+      <div class="privacy-badges" role="list" aria-label="Privacy guarantees">
+        <span class="pbadge pbadge-g" role="listitem">No data collected</span>
+        <span class="pbadge pbadge-b" role="listitem">No internet required</span>
+        <span class="pbadge pbadge-g" role="listitem">No third-party SDKs</span>
+        <span class="pbadge pbadge-b" role="listitem">No account needed</span>
+      </div>
+    </div>
+    <p style="margin-top:16px; font-size:0.85rem; color:var(--dim);">
+      Read the full <a href="privacy.html" style="color:var(--muted);text-decoration:underline;text-underline-offset:3px;">Privacy Policy →</a>
+    </p>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="wrap">
+  <div class="cta-section">
+    <h2>Ready to build<br><span>unstoppable habits?</span></h2>
+    <p>Free on the App Store. No sign-up. Start in 30 seconds.</p>
+    <a href="https://apps.apple.com" target="_blank" rel="noopener noreferrer" class="btn-primary" aria-label="Download HabitForce free on the App Store">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      Download free — App Store
+    </a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">HabitForce</div>
+    <div class="footer-links">
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="mailto:privacy@habitforce.app">Contact</a>
+    </div>
+    <div class="footer-copy">© 2026 HabitForce. All rights reserved.</div>
+  </div>
+</footer>
+
+</body>
+</html>

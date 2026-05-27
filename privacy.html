@@ -90,20 +90,15 @@
     }
 
     .logo-ring {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 88px;
-      height: 88px;
+      width: 96px;
+      height: 96px;
       border-radius: 22px;
-      background: linear-gradient(145deg, #0d2050, #1a3068);
-      border: 1.5px solid rgba(244,196,48,0.4);
       margin-bottom: 24px;
-      box-shadow: 0 0 32px rgba(244,196,48,0.15), 0 0 80px rgba(74,144,232,0.1);
-      position: relative;
+      box-shadow: 0 0 40px rgba(244,196,48,0.2), 0 0 80px rgba(74,144,232,0.1), 0 8px 24px rgba(0,0,0,0.4);
+      overflow: hidden;
     }
 
-    .logo-ring svg { width: 52px; height: 52px; }
+    .logo-ring img { width: 96px; height: 96px; display: block; border-radius: 22px; }
 
     .app-name {
       font-family: 'Outfit', sans-serif;
@@ -423,21 +418,7 @@
   <!-- Header -->
   <header>
     <div class="logo-ring">
-      <svg viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <!-- Trophy cup -->
-        <path d="M26 6C19 6 14 11 14 18C14 24 18 29 24 31L22 38H18L16 42H36L34 38H30L28 31C34 29 38 24 38 18C38 11 33 6 26 6Z" fill="url(#tg)"/>
-        <!-- handles -->
-        <path d="M14 14C10 12 9 18 13 20" stroke="#f4c430" stroke-width="2" fill="none" stroke-linecap="round"/>
-        <path d="M38 14C42 12 43 18 39 20" stroke="#f4c430" stroke-width="2" fill="none" stroke-linecap="round"/>
-        <!-- flame -->
-        <path d="M26 6C23 2 25 0 26 0C27 0 29 2 26 6Z" fill="#ff9800" opacity="0.9"/>
-        <defs>
-          <linearGradient id="tg" x1="14" y1="6" x2="38" y2="42" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#ffe484"/>
-            <stop offset="100%" stop-color="#f4a800"/>
-          </linearGradient>
-        </defs>
-      </svg>
+      <img src="appIcon.png" alt="HabitForce app icon">
     </div>
     <div class="app-name">HabitForce</div>
     <div class="page-title">Privacy Policy</div>
@@ -639,7 +620,7 @@
   <div class="contact-card">
     <h3>Questions about privacy?</h3>
     <p>We're happy to answer any questions about how HabitForce handles your data.</p>
-    <a href="mailto:privacy@habitforce.app" class="contact-email">privacy@habitforce.app</a>
+    <a href="mailto:habitforceapp+privacy@gmail.com" class="contact-email">habitforceapp+privacy@gmail.com</a>
   </div>
 
   <!-- Footer -->

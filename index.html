@@ -86,12 +86,16 @@
     }
     .nav-logo-icon {
       width: 36px; height: 36px; border-radius: 9px;
-      background: linear-gradient(145deg, #0d2050, #1a3068);
-      border: 1px solid var(--border-gold);
-      display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 0 16px rgba(244,196,48,0.15);
+      overflow: hidden;
+      box-shadow: 0 0 16px rgba(244,196,48,0.2);
+      flex-shrink: 0;
     }
-    .nav-logo-icon svg { width: 20px; height: 20px; }
+    .nav-logo-icon img { width: 36px; height: 36px; display: block; border-radius: 9px; }
+    .hero-app-icon {
+      width: 112px; height: 112px; border-radius: 26px;
+      display: block; margin: 0 auto 32px;
+      box-shadow: 0 0 48px rgba(244,196,48,0.22), 0 8px 32px rgba(0,0,0,0.45);
+    }
     .nav-logo-text {
       font-family: 'Outfit', sans-serif;
       font-weight: 800; font-size: 1.15rem;
@@ -427,14 +431,8 @@
 <nav aria-label="Main navigation">
   <div class="nav-inner">
     <a href="#" class="nav-logo" aria-label="HabitForce home">
-      <div class="nav-logo-icon" aria-hidden="true">
-        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M10 1C7 1 5 3.5 5 6C5 8.5 6.5 10.5 8.5 11.2L7.5 14H6L5 15.5H15L14 14H12.5L11.5 11.2C13.5 10.5 15 8.5 15 6C15 3.5 13 1 10 1Z" fill="url(#ng)"/>
-          <path d="M5 4C3.5 3.4 3.2 5.5 4.8 6" stroke="#f4c430" stroke-width="1" fill="none" stroke-linecap="round"/>
-          <path d="M15 4C16.5 3.4 16.8 5.5 15.2 6" stroke="#f4c430" stroke-width="1" fill="none" stroke-linecap="round"/>
-          <path d="M10 1C9.2 -0.2 10 -0.5 10 -0.5C10 -0.5 10.8 -0.2 10 1Z" fill="#ff9800"/>
-          <defs><linearGradient id="ng" x1="5" y1="1" x2="15" y2="15.5" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#ffe484"/><stop offset="100%" stop-color="#f4a800"/></linearGradient></defs>
-        </svg>
+      <div class="nav-logo-icon">
+        <img src="appIcon.png" alt="HabitForce">
       </div>
       <span class="nav-logo-text">HabitForce</span>
     </a>
@@ -451,6 +449,7 @@
 <!-- HERO -->
 <section class="hero" aria-labelledby="hero-heading">
   <div class="wrap">
+    <img src="appIcon.png" alt="HabitForce app icon" class="hero-app-icon">
     <div class="hero-eyebrow">
       <span class="hero-eyebrow-dot" aria-hidden="true"></span>
       Now available on App Store
@@ -667,7 +666,7 @@
     <div class="footer-logo">HabitForce</div>
     <div class="footer-links">
       <a href="privacy.html">Privacy Policy</a>
-      <a href="mailto:privacy@habitforce.app">Contact</a>
+      <a href="mailto:habitforceapp+support@gmail.com">Contact</a>
     </div>
     <div class="footer-copy">© 2026 HabitForce. All rights reserved.</div>
   </div>

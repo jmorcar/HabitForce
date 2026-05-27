@@ -93,7 +93,7 @@
       width: 96px;
       height: 96px;
       border-radius: 22px;
-      margin-bottom: 24px;
+      margin: 0 auto 24px;
       box-shadow: 0 0 40px rgba(244,196,48,0.2), 0 0 80px rgba(74,144,232,0.1), 0 8px 24px rgba(0,0,0,0.4);
       overflow: hidden;
     }
@@ -404,6 +404,14 @@
       border-radius: 1px;
     }
 
+    .back-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      color: var(--text-muted); text-decoration: none; font-size: 0.82rem;
+      padding: 10px 0 0;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--text-primary); }
+
     @media (max-width: 560px) {
       .privacy-hero { flex-direction: column; gap: 16px; }
       .section-header, .section-body { padding: 18px 20px; }
@@ -414,6 +422,11 @@
 </head>
 <body>
 <div class="page-wrap">
+
+  <a href="index.html" class="back-link" aria-label="Back to HabitForce">
+    <svg viewBox="0 0 16 16" fill="none" width="14" height="14" aria-hidden="true"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    HabitForce
+  </a>
 
   <!-- Header -->
   <header>
